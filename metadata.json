@@ -1,0 +1,9 @@
+{
+  "name": "GENZ CRM & Job Portal",
+  "description": "A dual-platform system featuring the GENZ Portal for users and an Advanced CRM for administrators, built with React, Tailwind CSS, and Firebase.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User profile for the Job Portal and CRM access control.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "username": { "type": "string", "description": "Unique username for dynamic profile URL" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "admin"] },
+        "bio": { "type": "string" },
+        "skills": { "type": "array", "items": { "type": "string" } },
+        "experience": { "type": "array", "items": { "type": "object" } },
+        "education": { "type": "array", "items": { "type": "object" } },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "username", "email", "role"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "CRM Project details.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "overdue", "completed"] },
+        "deadline": { "type": "string", "format": "date-time" },
+        "assignedTo": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["name", "status"]
+    },
+    "Announcement": {
+      "title": "Announcement",
+      "description": "System-wide announcements.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "content"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles and settings."
+    },
+    "/projects/{projectId}": {
+      "schema": "Project",
+      "description": "CRM projects."
+    },
+    "/announcements/{announcementId}": {
+      "schema": "Announcement",
+      "description": "Dashboard announcements."
+    }
+  }
+}
